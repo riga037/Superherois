@@ -17,6 +17,7 @@ Llista Planetes <a href="/formnewplanet">Nou Planeta</a>
 		<td>{{ $planeta->created_at }}</td>
 		<td><a href="/deleteplanet/{{ $planeta->id }}">Esborrar</a></td>
 		<td><a href="/updateplanet/{{ $planeta->id }}">Actualitzar</a></td>
+		<td><a href="/showplanet/{{ $planeta->id }}">Mostrar</a></td>
 	</tr>
 	@endforeach
 </table>

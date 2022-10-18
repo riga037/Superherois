@@ -1,5 +1,14 @@
 <?php $__env->startSection('content'); ?>
 
+<?php
+    if (isset($_REQUEST['gender'])) {
+        $selected_choice = $_REQUEST['gender'];
+    }
+    else {
+        $selected_choice = "none";
+    }
+?>
+
 Nou Superheroi
 <br><br>
 <form method="POST" action="/savesuperhero">
@@ -7,14 +16,20 @@ Nou Superheroi
 	<?php echo csrf_field(); ?>
 	Real Name <input type="text" name="realname" value="<?php echo e(old('realname')); ?>"><br><br>
 	Hero Name <input type="text" name="heroname" value="<?php echo e(old('heroname')); ?>"><br><br>
-	Gender <input type="text" name="gender" value="<?php echo e(old('gender')); ?>"><br><br>
-	Planet ID <input type="number" name="planet_id" value="<?php echo e(old('planet_id')); ?>"><br><br>	
+	Gender <select name="gender" id="gender">
+		<option value="male" <?php if( old('gender') == "male"): ?> selected <?php endif; ?> >Male</option>
+		<option value="female" <?php if( old('gender') == "female"): ?> selected <?php endif; ?> >Female</option>
+	</select><br><br>
+	Planet <select name="planet_id" id="planet_id">
+  		<?php $__currentLoopData = $planetes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $planeta): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+		<option value="<?php echo e($planeta->id); ?>" <?php if(old('planet_id') == $planeta->id): ?> selected <?php endif; ?> ><?php echo e($planeta->name); ?></option>
+  		<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+	</select><br><br>	
 	<input type="submit" name="Desar">
 
 </form>
 
 <?php if($errors->any()): ?>
-
 	<ul>
 		<?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 			<li><?php echo e($error); ?></li>

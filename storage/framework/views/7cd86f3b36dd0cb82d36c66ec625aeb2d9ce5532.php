@@ -18,7 +18,7 @@ Llista Superherois <a href="/formnewsuperhero">Nou Superheroi</a>
 		<td><?php echo e($superheroi->realname); ?></td>
 		<td><?php echo e($superheroi->heroname); ?></td>
 		<td><?php echo e($superheroi->gender); ?></td>
-		<td><?php echo e($superheroi->planet_id); ?></td>
+		<td><?php echo e($superheroi->planet->name); ?></td>
 		<td><?php echo e($superheroi->created_at); ?></td>
 		<td><a href="/deletesuperhero/<?php echo e($superheroi->id); ?>">Esborrar</a></td>
 		<td><a href="/updatesuperhero/<?php echo e($superheroi->id); ?>">Actualitzar</a></td>

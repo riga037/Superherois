@@ -19,7 +19,7 @@ Llista Superherois <a href="/formnewsuperhero">Nou Superheroi</a>
 		<td>{{ $superheroi->realname }}</td>
 		<td>{{ $superheroi->heroname }}</td>
 		<td>{{ $superheroi->gender }}</td>
-		<td>{{ $superheroi->planet_id }}</td>
+		<td>{{ $superheroi->planet->name }}</td>
 		<td>{{ $superheroi->created_at }}</td>
 		<td><a href="/deletesuperhero/{{ $superheroi->id }}">Esborrar</a></td>
 		<td><a href="/updatesuperhero/{{ $superheroi->id }}">Actualitzar</a></td>

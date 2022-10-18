@@ -57,6 +57,9 @@ Route::get('/updateplanet/{id}',
 Route::post('/updateplanet/{id}', 
     [PlanetController::class,'update']);
 
+Route::get('/showplanet/{id}', 
+    [PlanetController::class,'show']);
+
 
 Route::get('/superheroes', 
     [SuperheroController::class,'index']);

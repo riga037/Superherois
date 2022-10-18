@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Superhero;
+use App\Models\Planet;
 
 class SuperheroController extends Controller
 {
@@ -27,7 +28,8 @@ class SuperheroController extends Controller
     public function create()
     {
         //
-        return view('superheroes.new');
+        $planetes = Planet::all();
+        return view('superheroes.new', compact('planetes'));
     }
 
     /**
@@ -40,10 +42,8 @@ class SuperheroController extends Controller
     {
         //
         $request->validate(
-            ['realname' => 'required | min:3'],
-            ['heroname' => 'required | min:3'],
-            ['gender' => 'required | min:3'],
-            ['planet_id' => 'required']
+            ['realname' => 'required | min:3',
+            'heroname' => 'required | min:3 | unique:superheroes']
         );
 
         $superhero = new Superhero;
@@ -77,8 +77,8 @@ class SuperheroController extends Controller
     {
         //
         $superheroi = Superhero::findOrFail($id);
-
-        return view('superheroes.update',compact('superheroi'));
+        $planetes = Planet::all();
+        return view('superheroes.update',compact('superheroi','planetes'));
     }
 
     /**
@@ -92,17 +92,16 @@ class SuperheroController extends Controller
     {
         //
         $request->validate(
-            ['realname' => 'required | min:3'],
-            ['heroname' => 'required | min:3'],
-            ['gender' => 'required | min:3'],
-            ['planet_id' => 'required']
+            ['realname' => 'required | min:3',
+            'heroname' => 'required | min:3 | unique:superheroes,heroname,'.$id]
         );
 
+        
         $superheroi = Superhero::findOrFail($id);
-        $superhero->realname = $request->realname;
-        $superhero->heroname = $request->heroname;
-        $superhero->gender = $request->gender;
-        $superhero->realname = $request->planet_id;
+        $superheroi->realname = $request->realname;
+        $superheroi->heroname = $request->heroname;
+        $superheroi->gender = $request->gender;
+        $superheroi->planet_id = $request->planet_id;
         $superheroi->save();
 
         return redirect('/superheroes');

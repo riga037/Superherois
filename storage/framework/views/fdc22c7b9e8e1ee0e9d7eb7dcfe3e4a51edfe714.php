@@ -7,8 +7,17 @@ Actualitzar Superheroi
 	<?php echo csrf_field(); ?>
 	Real Name <input type="text" name="realname" value="<?php echo e(old('realname',$superheroi->realname)); ?>"><br><br>
 	Hero Name <input type="text" name="heroname" value="<?php echo e(old('heroname',$superheroi->heroname)); ?>"><br><br>
-	Gender <input type="text" name="gender" value="<?php echo e(old('gender',$superheroi->gender)); ?>"><br><br>
-	Planet ID <input type="number" name="planet_id" value="<?php echo e(old('planet_id',$superheroi->planet_id)); ?>"><br><br>	
+	Gender <select name="gender" id="gender">
+		<option value="male" <?php if( old('gender') == "male"): ?> selected <?php endif; ?> >Male</option>
+		<option value="female" <?php if( old('gender',$superheroi->gender) == "female"): ?> selected <?php endif; ?> >Female</option>
+	</select><br><br>
+  	
+	Planet <select name="planet_id" id="planet_id">
+  		<?php $__currentLoopData = $planetes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $planeta): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+		<option value="<?php echo e($planeta->id); ?>" <?php if(old('id',$planeta->id) == $planeta->id): ?> selected <?php endif; ?> ><?php echo e($planeta->name); ?></option>
+  		<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+	</select><br><br>	
 	<input type="submit" name="Desar">
 
 </form>

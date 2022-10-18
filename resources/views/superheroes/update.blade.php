@@ -8,8 +8,17 @@ Actualitzar Superheroi
 	@csrf
 	Real Name <input type="text" name="realname" value="{{ old('realname',$superheroi->realname) }}"><br><br>
 	Hero Name <input type="text" name="heroname" value="{{ old('heroname',$superheroi->heroname) }}"><br><br>
-	Gender <input type="text" name="gender" value="{{ old('gender',$superheroi->gender) }}"><br><br>
-	Planet ID <input type="number" name="planet_id" value="{{ old('planet_id',$superheroi->planet_id) }}"><br><br>	
+	Gender <select name="gender" id="gender">
+		<option value="male" @if( old('gender') == "male") selected @endif >Male</option>
+		<option value="female" @if( old('gender',$superheroi->gender) == "female") selected @endif >Female</option>
+	</select><br><br>
+  	
+	Planet <select name="planet_id" id="planet_id">
+  		@foreach($planetes as $planeta)
+
+		<option value="{{ $planeta->id }}" @if (old('id',$planeta->id) == $planeta->id) selected @endif >{{ $planeta->name }}</option>
+  		@endforeach
+	</select><br><br>	
 	<input type="submit" name="Desar">
 
 </form>

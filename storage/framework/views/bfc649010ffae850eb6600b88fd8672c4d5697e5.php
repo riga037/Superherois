@@ -16,6 +16,7 @@ Llista Planetes <a href="/formnewplanet">Nou Planeta</a>
 		<td><?php echo e($planeta->created_at); ?></td>
 		<td><a href="/deleteplanet/<?php echo e($planeta->id); ?>">Esborrar</a></td>
 		<td><a href="/updateplanet/<?php echo e($planeta->id); ?>">Actualitzar</a></td>
+		<td><a href="/showplanet/<?php echo e($planeta->id); ?>">Mostrar</a></td>
 	</tr>
 	<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </table>
