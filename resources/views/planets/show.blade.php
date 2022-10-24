@@ -3,10 +3,10 @@
 
 Fitxa Planeta
 <br><br>
-<b>Name:</b> {{ $planeta->name }}</b><br><br>
+<b>Name:</b> {{ $planet->name }}</b><br><br>
 <b>Herois Il·lustres:</b><br>
 
-@foreach($planeta->superheroes as $super)
+@foreach($planet->superheroes as $super)
     <li>{{ $super->heroname }}</li>
 @endforeach
 

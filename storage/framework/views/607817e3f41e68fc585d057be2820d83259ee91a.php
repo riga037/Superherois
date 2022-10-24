@@ -16,6 +16,7 @@ Llista Superpoders <a href="/formnew">Nou Superpoder</a>
 		<td><?php echo e($poder->created_at); ?></td>
 		<td><a href="/delete/<?php echo e($poder->id); ?>">Esborrar</a></td>
 		<td><a href="/update/<?php echo e($poder->id); ?>">Actualitzar</a></td>
+		<td><a href="/show/<?php echo e($poder->id); ?>">Mostrar</a></td>
 	</tr>
 	<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </table>

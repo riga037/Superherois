@@ -2,10 +2,10 @@
 
 Fitxa Planeta
 <br><br>
-<b>Name:</b> <?php echo e($planeta->name); ?></b><br><br>
+<b>Name:</b> <?php echo e($planet->name); ?></b><br><br>
 <b>Herois Il·lustres:</b><br>
 
-<?php $__currentLoopData = $planeta->superheroes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $super): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+<?php $__currentLoopData = $planet->superheroes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $super): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <li><?php echo e($super->heroname); ?></li>
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 

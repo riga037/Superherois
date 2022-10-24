@@ -56,12 +56,10 @@ class PlanetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Planet $planet)
     {
         //
-        $planeta = Planet::findOrFail($id);
-
-        return view('planets.show',compact('planeta'));
+        return view('planets.show',['planet'=>$planet]);
     }
 
     /**
@@ -70,10 +68,10 @@ class PlanetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($planet)
     {
         //
-        $planeta = Planet::findOrFail($id);
+        $planeta = Planet::findOrFail($planet);
 
         return view('planets.update',compact('planeta'));
     }
@@ -85,14 +83,14 @@ class PlanetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $planet)
     {
         //
         $request->validate(
             ['name' => 'required | min:3']
         );
 
-        $planeta = Planet::findOrFail($id);
+        $planeta = Planet::findOrFail($planet);
         $planeta->name = $request->name;
         $planeta->save();
 
@@ -105,10 +103,10 @@ class PlanetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($planet)
     {
         //
-        $planeta = Planet::findOrFail($id);
+        $planeta = Planet::findOrFail($planet);
         $planeta->delete();
 
         return redirect('/planets');

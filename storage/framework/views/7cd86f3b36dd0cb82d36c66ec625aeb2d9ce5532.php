@@ -22,6 +22,7 @@ Llista Superherois <a href="/formnewsuperhero">Nou Superheroi</a>
 		<td><?php echo e($superheroi->created_at); ?></td>
 		<td><a href="/deletesuperhero/<?php echo e($superheroi->id); ?>">Esborrar</a></td>
 		<td><a href="/updatesuperhero/<?php echo e($superheroi->id); ?>">Actualitzar</a></td>
+		<td><a href="/showsuperhero/<?php echo e($superheroi->id); ?>">Mostrar</a></td>
 	</tr>
 	<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </table>

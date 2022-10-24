@@ -10,9 +10,13 @@ class Superhero extends Model
     use HasFactory;
     protected $fillable = ['heroname','realname','gender','planet_id'];
 
+    protected $with = ['planet'];
+
     public function planet() {
 
     	return $this->belongsTo(Planet::class);
+
+        // return $this->belongsTo(Model::class, 'foreign_key', 'owner_key');
 
     }
 
@@ -27,5 +31,3 @@ class Superhero extends Model
        
      }
 }
-
-

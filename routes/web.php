@@ -29,14 +29,17 @@ Route::get('/formnew',
 Route::post('/save', 
     [SuperpowerController::class,'store']);
 
-Route::get('/delete/{id}', 
+Route::get('/delete/{superpower}', 
     [SuperpowerController::class,'destroy']);
 
-Route::get('/update/{id}', 
+Route::get('/update/{superpower}', 
     [SuperpowerController::class,'edit']);
 
-Route::post('/update/{id}', 
+Route::post('/update/{superpower}', 
     [SuperpowerController::class,'update']);
+
+Route::get('/show/{superpower}', 
+    [SuperpowerController::class,'show']);
 
 
 Route::get('/planets', 
@@ -48,16 +51,16 @@ Route::get('/formnewplanet',
 Route::post('/saveplanet', 
     [PlanetController::class,'store']);
 
-Route::get('/deleteplanet/{id}', 
+Route::get('/deleteplanet/{planet}', 
     [PlanetController::class,'destroy']);
 
-Route::get('/updateplanet/{id}', 
+Route::get('/updateplanet/{planet}', 
     [PlanetController::class,'edit']);
 
-Route::post('/updateplanet/{id}', 
+Route::post('/updateplanet/{planet}', 
     [PlanetController::class,'update']);
 
-Route::get('/showplanet/{id}', 
+Route::get('/showplanet/{planet}', 
     [PlanetController::class,'show']);
 
 
@@ -70,11 +73,14 @@ Route::get('/formnewsuperhero',
 Route::post('/savesuperhero', 
     [SuperheroController::class,'store']);
 
-Route::get('/deletesuperhero/{id}', 
+Route::get('/deletesuperhero/{superhero}', 
     [SuperheroController::class,'destroy']);
 
-Route::get('/updatesuperhero/{id}', 
+Route::get('/updatesuperhero/{superhero}', 
     [SuperheroController::class,'edit']);
 
-Route::post('/updatesuperhero/{id}', 
+Route::post('/updatesuperhero/{superhero}', 
     [SuperheroController::class,'update']);
+
+Route::get('/showsuperhero/{superhero}', 
+    [SuperheroController::class,'show']);

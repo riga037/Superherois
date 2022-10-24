@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Planet extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name'
+    ];
 
-    public function superheroes(){
-        return $this->hasmany(Superhero::class);
+    public function superheroes()
+    {
+        return $this->hasMany(Superhero::class);
     }
 }

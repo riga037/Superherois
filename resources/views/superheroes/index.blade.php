@@ -23,6 +23,7 @@ Llista Superherois <a href="/formnewsuperhero">Nou Superheroi</a>
 		<td>{{ $superheroi->created_at }}</td>
 		<td><a href="/deletesuperhero/{{ $superheroi->id }}">Esborrar</a></td>
 		<td><a href="/updatesuperhero/{{ $superheroi->id }}">Actualitzar</a></td>
+		<td><a href="/showsuperhero/{{ $superheroi->id }}">Mostrar</a></td>
 	</tr>
 	@endforeach
 </table>

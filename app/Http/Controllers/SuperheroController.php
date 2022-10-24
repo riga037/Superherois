@@ -15,9 +15,13 @@ class SuperheroController extends Controller
      */
     public function index()
     {
-        //
-        $superherois = Superhero::paginate(5);
-        return view('superheroes.index', compact('superherois'));
+        // Carreguem llista superherois i cada
+        // superheroi amb l'objecte planeta associat
+        // per evitar problema N+1 
+        $superherois = Superhero::with('planet')->paginate(5);
+    
+        return view('superheroes.index',compact('superherois'));
+           
     }
 
     /**
@@ -62,9 +66,13 @@ class SuperheroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Superhero $superhero)
     {
-        //
+            // Tenim un superheroi, carreguem els superpoders associats!     
+            $superhero->load("superpowers");
+            // dd($superhero);
+            
+            return view('superheroes.show',compact('superhero'));
     }
 
     /**
@@ -73,10 +81,10 @@ class SuperheroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Superhero $superhero)
     {
         //
-        $superheroi = Superhero::findOrFail($id);
+        $superheroi = Superhero::findOrFail($superhero);
         $planetes = Planet::all();
         return view('superheroes.update',compact('superheroi','planetes'));
     }
@@ -88,16 +96,16 @@ class SuperheroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $superhero)
     {
         //
         $request->validate(
             ['realname' => 'required | min:3',
-            'heroname' => 'required | min:3 | unique:superheroes,heroname,'.$id]
+            'heroname' => 'required | min:3 | unique:superheroes,heroname,'.$superhero]
         );
 
         
-        $superheroi = Superhero::findOrFail($id);
+        $superheroi = Superhero::findOrFail($superhero);
         $superheroi->realname = $request->realname;
         $superheroi->heroname = $request->heroname;
         $superheroi->gender = $request->gender;
@@ -113,10 +121,10 @@ class SuperheroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Superhero $superhero)
     {
         //
-        $superheroi = Superhero::findOrFail($id);
+        $superheroi = Superhero::findOrFail($superhero);
         $superheroi->delete();
 
         return redirect('/superheroes');

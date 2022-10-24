@@ -17,6 +17,7 @@ Llista Superpoders <a href="/formnew">Nou Superpoder</a>
 		<td>{{ $poder->created_at }}</td>
 		<td><a href="/delete/{{ $poder->id }}">Esborrar</a></td>
 		<td><a href="/update/{{ $poder->id }}">Actualitzar</a></td>
+		<td><a href="/show/{{ $poder->id }}">Mostrar</a></td>
 	</tr>
 	@endforeach
 </table>

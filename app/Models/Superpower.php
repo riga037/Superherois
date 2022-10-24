@@ -14,10 +14,12 @@ class Superpower extends Model
 
     public function superheroes()
     {
-  		 
-   		return $this->belongsToMany(
+  	
+	// La taula per seguir convencions Laravel s'hauria d'haver anomenat superhero_superpower!!! 
+      
+   	return $this->belongsToMany(
        		 Superhero::class,
         	'superheroes_superpowers');
-        	
-    }
+       
+     }
 }
