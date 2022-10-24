@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Superpower extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'description'
+    ];
+
+    public function superheroes()
+    {
+  		 
+   		return $this->belongsToMany(
+       		 Superhero::class,
+        	'superheroes_superpowers');
+        	
+    }
 }
