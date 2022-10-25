@@ -69,7 +69,7 @@ class SuperpowerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Superpower $superpower)
+    public function edit($superpower)
     {
         //
         $poder = Superpower::findOrFail($superpower);
@@ -104,10 +104,10 @@ class SuperpowerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Superpower $superpower)
+    public function destroy($superpower)
     {
         //
-        $poder = Superpower::findOrFail($id);
+        $poder = Superpower::findOrFail($superpower);
         $poder->delete();
 
         return redirect('/powers');

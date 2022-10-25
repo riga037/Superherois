@@ -1,4 +1,5 @@
 <?php $__env->startSection('content'); ?>
+<a href="<?php echo e(route('superpowers.index')); ?>"> Tornar</a>
 
 <h2>Superpower</h2>
             

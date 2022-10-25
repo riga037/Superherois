@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/powers', 
-    [SuperpowerController::class,'index']);
+    [SuperpowerController::class,'index'])->name('superpowers.index');
 
 Route::get('/formnew', 
     [SuperpowerController::class,'create']);
@@ -43,7 +43,7 @@ Route::get('/show/{superpower}',
 
 
 Route::get('/planets', 
-    [PlanetController::class,'index']);
+    [PlanetController::class,'index'])->name('planets.index');
 
 Route::get('/formnewplanet', 
     [PlanetController::class,'create']);
@@ -65,7 +65,7 @@ Route::get('/showplanet/{planet}',
 
 
 Route::get('/superheroes', 
-    [SuperheroController::class,'index']);
+    [SuperheroController::class,'index'])->name('superheroes.index');
 
 Route::get('/formnewsuperhero', 
     [SuperheroController::class,'create']);

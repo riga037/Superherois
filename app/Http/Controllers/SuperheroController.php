@@ -81,7 +81,7 @@ class SuperheroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Superhero $superhero)
+    public function edit($superhero)
     {
         //
         $superheroi = Superhero::findOrFail($superhero);
@@ -121,7 +121,7 @@ class SuperheroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Superhero $superhero)
+    public function destroy($superhero)
     {
         //
         $superheroi = Superhero::findOrFail($superhero);
