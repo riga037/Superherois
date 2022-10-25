@@ -2,7 +2,7 @@
 <a href="<?php echo e(route('superpowers.index')); ?>"> Tornar</a>
 
 <h2>Fitxa Planeta</h2>
-<br><br>
+
 <b>Name:</b> <?php echo e($planet->name); ?></b><br><br>
 <b>Herois Il·lustres:</b><br>
 
