@@ -1,27 +1,52 @@
 @extends('plantilla')
+
 @section('content')
+    <div>        
+        <h2>Planetes</h2>
+    </div>
+    <div>
+        <a href="{{ route('planets.create') }}"> Nou planeta</a>
+    </div>
+        
+   
+    @if (session('success'))
+        <div class="alert alert-success">
+            <p>{{ session('success') }}</p>
+        </div>
+    @endif
 
-Llista Planetes <a href="/formnewplanet">Nou Planeta</a>
-<br>
-<table border=1>
-	<tr>
-		<td>ID</td>
-		<td>Name</td>
-		<td>Created At</td>
-		<td>Operacions</td>
-	</tr>
-	@foreach($planetes as $planeta)
-	<tr>
-		<td>{{ $planeta->id }}</td>
-		<td>{{ $planeta->name }}</td>
-		<td>{{ $planeta->created_at }}</td>
-		<td><a href="/deleteplanet/{{ $planeta->id }}">Esborrar</a></td>
-		<td><a href="/updateplanet/{{ $planeta->id }}">Actualitzar</a></td>
-		<td><a href="/showplanet/{{ $planeta->id }}">Mostrar</a></td>
-	</tr>
-	@endforeach
-</table>
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 
-{{$planetes->links('pagination::bootstrap-4')}}
-
+       
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Planet Name</th>
+                <th>Creation Date</th>                        
+                <th>Operacions</th>
+            </tr>
+        </thead>
+        
+        @foreach ($planets as $planet)
+        
+        <tr>
+            <td>{{ $planet->id }}</td>
+            <td>{{ $planet->name }}</td>
+            <td>{{ $planet->created_at }}</td>                     
+            <td>     
+                  <a href="{{ route('planets.show',$planet->id) }}">Mostrar</a>        
+                  <a href="{{ route('planets.edit',$planet->id) }}">Editar</a>
+                  <a href="{{ route('planets.destroy',$planet->id) }}">Esborrar</a>               
+            </td>
+        </tr>
+        @endforeach
+    </table>
+  
+    {{ $planets->links('pagination::bootstrap-4') }}
+      
 @endsection

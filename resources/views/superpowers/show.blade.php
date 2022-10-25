@@ -1,7 +1,7 @@
 @extends('plantilla')
 
 @section('content')
-<a href="{{ route('superpowers.index') }}"> Tornar</a>
+<a href="{{ route('superpowers.index') }}">Tornar</a>
 
 <h2>Superpower</h2>
             

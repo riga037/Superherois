@@ -12,7 +12,7 @@
   <div style="padding: 10px; background-color: aliceblue;">
     <a href="{{ url('/') }}">Home</a>
     <a href="{{ url('/planets') }}">Planetes</a>
-    <a href="{{ url('/powers') }}">Superpoders</a>
+    <a href="{{ url('/superpowers') }}">Superpoders</a>
     <a href="{{ url('/superheroes') }}">Superherois</a>         
   </div>
 

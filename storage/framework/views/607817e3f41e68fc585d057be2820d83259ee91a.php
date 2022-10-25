@@ -1,28 +1,51 @@
 <?php $__env->startSection('content'); ?>
+    <div>        
+        <h2>Superpoders</h2>
+    </div>
+    <div>
+        <a href="<?php echo e(route('superpowers.create')); ?>"> Nou superpoder</a>
+    </div>
+        
+   
+    <?php if(session('success')): ?>
+        <div class="alert alert-success">
+            <p><?php echo e(session('success')); ?></p>
+        </div>
+    <?php endif; ?>
 
-Llista Superpoders <a href="/formnew">Nou Superpoder</a>
-<br>
-<table border=1>
-	<tr>
-		<td>ID</td>
-		<td>Description</td>
-		<td>Created At</td>
-		<td>Operacions</td>
-	</tr>
-	<?php $__currentLoopData = $poders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $poder): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-	<tr>
-		<td><?php echo e($poder->id); ?></td>
-		<td><?php echo e($poder->description); ?></td>
-		<td><?php echo e($poder->created_at); ?></td>
-		<td><a href="/delete/<?php echo e($poder->id); ?>">Esborrar</a></td>
-		<td><a href="/update/<?php echo e($poder->id); ?>">Actualitzar</a></td>
-		<td><a href="/show/<?php echo e($poder->id); ?>">Mostrar</a></td>
-	</tr>
-	<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-</table>
+    <?php if(session('error')): ?>
+        <div class="alert alert-danger">
+            <?php echo e(session('error')); ?>
 
-<?php echo e($poders->links('pagination::bootstrap-4')); ?>
+        </div>
+    <?php endif; ?>
 
+       
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>                  
+                <th>Operacions</th>
+            </tr>
+        </thead>
+        
+        <?php $__currentLoopData = $superpowers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $superpower): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        
+        <tr>
+            <td><?php echo e($superpower->id); ?></td>
+            <td><?php echo e($superpower->description); ?></td>                
+            <td>     
+                  <a href="<?php echo e(route('superpowers.show',$superpower->id)); ?>">Mostrar</a>        
+                  <a href="<?php echo e(route('superpowers.edit',$superpower->id)); ?>">Editar</a>
+                  <a href="<?php echo e(route('superpowers.destroy',$superpower->id)); ?>">Esborrar</a>               
+            </td>
+        </tr>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </table>
+  
+    <?php echo e($superpowers->links('pagination::bootstrap-4')); ?>
 
+      
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('plantilla', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/usuari/projectes/Superherois/resources/views/superpowers/index.blade.php ENDPATH**/ ?>

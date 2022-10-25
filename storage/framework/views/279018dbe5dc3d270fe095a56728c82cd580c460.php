@@ -2,7 +2,7 @@
 
 Nou Planeta
 <br><br>
-<form method="POST" action="/saveplanet">
+<form method="POST" action="<?php echo e(route('planets.store')); ?>">
 	
 	<?php echo csrf_field(); ?>
 	<input type="text" name="name" value="<?php echo e(old('name')); ?>">

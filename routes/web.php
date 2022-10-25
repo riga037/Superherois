@@ -20,67 +20,46 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/powers', 
-    [SuperpowerController::class,'index'])->name('superpowers.index');
+Route::get('/superpowers', [App\Http\Controllers\SuperpowerController::class, 'index'])->name('superpowers.index');
 
-Route::get('/formnew', 
-    [SuperpowerController::class,'create']);
+Route::get('/superpowers/create', [App\Http\Controllers\SuperpowerController::class, 'create'])->name('superpowers.create');
 
-Route::post('/save', 
-    [SuperpowerController::class,'store']);
+Route::get('/superpowers/show/{superpower}', [App\Http\Controllers\SuperpowerController::class, 'show'])->name('superpowers.show');
 
-Route::get('/delete/{superpower}', 
-    [SuperpowerController::class,'destroy']);
+Route::post('/superpowers/store', [App\Http\Controllers\SuperpowerController::class, 'store'])->name('superpowers.store');
 
-Route::get('/update/{superpower}', 
-    [SuperpowerController::class,'edit']);
+Route::get('/superpowers/destroy/{superpower}', [App\Http\Controllers\SuperpowerController::class, 'destroy'])->name('superpowers.destroy');
 
-Route::post('/update/{superpower}', 
-    [SuperpowerController::class,'update']);
+Route::get('/superpowers/edit/{superpower}', [App\Http\Controllers\SuperpowerController::class, 'edit'])->name('superpowers.edit');
 
-Route::get('/show/{superpower}', 
-    [SuperpowerController::class,'show']);
+Route::post('/superpowers/update/{superpower}', [App\Http\Controllers\SuperpowerController::class, 'update'])->name('superpowers.update');
 
 
-Route::get('/planets', 
-    [PlanetController::class,'index'])->name('planets.index');
+    Route::get('/planets', [App\Http\Controllers\PlanetController::class, 'index'])->name('planets.index');
 
-Route::get('/formnewplanet', 
-    [PlanetController::class,'create']);
-
-Route::post('/saveplanet', 
-    [PlanetController::class,'store']);
-
-Route::get('/deleteplanet/{planet}', 
-    [PlanetController::class,'destroy']);
-
-Route::get('/updateplanet/{planet}', 
-    [PlanetController::class,'edit']);
-
-Route::post('/updateplanet/{planet}', 
-    [PlanetController::class,'update']);
-
-Route::get('/showplanet/{planet}', 
-    [PlanetController::class,'show']);
+    Route::get('/planets/create', [App\Http\Controllers\PlanetController::class, 'create'])->name('planets.create');
+    
+    Route::get('/planets/show/{planet}', [App\Http\Controllers\PlanetController::class, 'show'])->name('planets.show');
+    
+    Route::post('/planets/store', [App\Http\Controllers\PlanetController::class, 'store'])->name('planets.store');
+    
+    Route::get('/planets/destroy/{planet}', [App\Http\Controllers\PlanetController::class, 'destroy'])->name('planets.destroy');
+    
+    Route::get('/planets/edit/{planet}', [App\Http\Controllers\PlanetController::class, 'edit'])->name('planets.edit');
+    
+    Route::post('/planets/update/{planet}', [App\Http\Controllers\PlanetController::class, 'update'])->name('planets.update');
 
 
-Route::get('/superheroes', 
-    [SuperheroController::class,'index'])->name('superheroes.index');
+    Route::get('/superheroes', [App\Http\Controllers\SuperheroController::class, 'index'])->name('superheroes.index');
 
-Route::get('/formnewsuperhero', 
-    [SuperheroController::class,'create']);
-
-Route::post('/savesuperhero', 
-    [SuperheroController::class,'store']);
-
-Route::get('/deletesuperhero/{superhero}', 
-    [SuperheroController::class,'destroy']);
-
-Route::get('/updatesuperhero/{superhero}', 
-    [SuperheroController::class,'edit']);
-
-Route::post('/updatesuperhero/{superhero}', 
-    [SuperheroController::class,'update']);
-
-Route::get('/showsuperhero/{superhero}', 
-    [SuperheroController::class,'show']);
+    Route::get('/superheroes/create', [App\Http\Controllers\SuperheroController::class, 'create'])->name('superheroes.create');
+    
+    Route::get('/superheroes/show/{superhero}', [App\Http\Controllers\SuperheroController::class, 'show'])->name('superheroes.show');
+    
+    Route::post('/superheroes/store', [App\Http\Controllers\SuperheroController::class, 'store'])->name('superheroes.store');
+    
+    Route::get('/superheroes/destroy/{superhero}', [App\Http\Controllers\SuperheroController::class, 'destroy'])->name('superheroes.destroy');
+    
+    Route::get('/superheroes/edit/{superhero}', [App\Http\Controllers\SuperheroController::class, 'edit'])->name('superheroes.edit');
+    
+    Route::post('/superheroes/update/{superhero}', [App\Http\Controllers\SuperheroController::class, 'update'])->name('superheroes.update');

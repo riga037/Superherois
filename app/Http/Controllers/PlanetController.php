@@ -15,8 +15,8 @@ class PlanetController extends Controller
     public function index()
     {
         //
-        $planetes = Planet::paginate(5);
-        return view('planets.index', compact('planetes'));
+        $planets = Planet::paginate(5);
+        return view('planets.index', compact('planets'));
     }
 
     /**
@@ -68,12 +68,10 @@ class PlanetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($planet)
+    public function edit(Planet $planet)
     {
         //
-        $planeta = Planet::findOrFail($planet);
-
-        return view('planets.update',compact('planeta'));
+        return view('planets.update',['planet'=>$planet]);
     }
 
     /**
@@ -83,16 +81,15 @@ class PlanetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $planet)
+    public function update(Request $request, Planet $planet)
     {
         //
         $request->validate(
             ['name' => 'required | min:3']
         );
 
-        $planeta = Planet::findOrFail($planet);
-        $planeta->name = $request->name;
-        $planeta->save();
+        $planet->name = $request->name;
+        $planet->save();
 
         return redirect('/planets');
     }
@@ -103,11 +100,10 @@ class PlanetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($planet)
+    public function destroy(Planet $planet)
     {
         //
-        $planeta = Planet::findOrFail($planet);
-        $planeta->delete();
+        $planet->delete();
 
         return redirect('/planets');
     }

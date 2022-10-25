@@ -3,7 +3,7 @@
 
 Nou Planeta
 <br><br>
-<form method="POST" action="/saveplanet">
+<form method="POST" action="{{ route('planets.store') }}">
 	
 	@csrf
 	<input type="text" name="name" value="{{old('name')}}">

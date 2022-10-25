@@ -1,14 +1,19 @@
 @extends('plantilla')
+  
 @section('content')
-<a href="{{ route('superpowers.index') }}"> Tornar</a>
+<a href="{{ route('planets.index') }}"> Tornar</a>
 
 <h2>Fitxa Planeta</h2>
 
-<b>Name:</b> {{ $planet->name }}</b><br><br>
-<b>Herois Il·lustres:</b><br>
+    <div>
+        <strong>Planet name:</strong>
+        {{ $planet->name }}
+    </div>
 
-@foreach($planet->superheroes as $super)
-    <li>{{ $super->heroname }}</li>
-@endforeach
-
+    <div>
+        <strong>Herois il·lustres:</strong>
+        @foreach($planet->superheroes as $superhero)
+            <li>{{ $superhero->heroname }}</li>
+        @endforeach
+    </div>
 @endsection

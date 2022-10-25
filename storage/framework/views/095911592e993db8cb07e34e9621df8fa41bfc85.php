@@ -12,7 +12,7 @@
   <div style="padding: 10px; background-color: aliceblue;">
     <a href="<?php echo e(url('/')); ?>">Home</a>
     <a href="<?php echo e(url('/planets')); ?>">Planetes</a>
-    <a href="<?php echo e(url('/powers')); ?>">Superpoders</a>
+    <a href="<?php echo e(url('/superpowers')); ?>">Superpoders</a>
     <a href="<?php echo e(url('/superheroes')); ?>">Superherois</a>         
   </div>
 

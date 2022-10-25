@@ -1,33 +1,52 @@
 @extends('plantilla')
+
 @section('content')
+    <div>        
+        <h2>Superherois</h2>
+    </div>
+    <div>
+        <a href="{{ route('superheroes.create') }}"> Nou superheroi</a>
+    </div>
+        
+   
+    @if (session('success'))
+        <div class="alert alert-success">
+            <p>{{ session('success') }}</p>
+        </div>
+    @endif
 
-Llista Superherois <a href="/formnewsuperhero">Nou Superheroi</a>
-<br>
-<table border=1>
-	<tr>
-		<td>ID</td>
-		<td>Real Name</td>
-		<td>Hero Name</td>
-		<td>Gender</td>
-		<td>Planet</td>
-		<td>Created At</td>
-		<td>Operacions</td>
-	</tr>
-	@foreach($superherois as $superheroi)
-	<tr>
-		<td>{{ $superheroi->id }}</td>
-		<td>{{ $superheroi->realname }}</td>
-		<td>{{ $superheroi->heroname }}</td>
-		<td>{{ $superheroi->gender }}</td>
-		<td>{{ $superheroi->planet->name }}</td>
-		<td>{{ $superheroi->created_at }}</td>
-		<td><a href="/deletesuperhero/{{ $superheroi->id }}">Esborrar</a></td>
-		<td><a href="/updatesuperhero/{{ $superheroi->id }}">Actualitzar</a></td>
-		<td><a href="/showsuperhero/{{ $superheroi->id }}">Mostrar</a></td>
-	</tr>
-	@endforeach
-</table>
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 
-{{$superherois->links('pagination::bootstrap-4')}}
-
+       
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Hero Name</th>
+                <th>Gender</th>                        
+                <th>Operacions</th>
+            </tr>
+        </thead>
+        
+        @foreach ($superheroes as $superhero)
+        
+        <tr>
+            <td>{{ $superhero->id }}</td>
+            <td>{{ $superhero->heroname }}</td>
+            <td>{{ $superhero->gender }}</td>                     
+            <td>     
+                  <a href="{{ route('superheroes.show',$superhero->id) }}">Mostrar</a>        
+                  <a href="{{ route('superheroes.edit',$superhero->id) }}">Editar</a>
+                  <a href="{{ route('superheroes.destroy',$superhero->id) }}">Esborrar</a>               
+            </td>
+        </tr>
+        @endforeach
+    </table>
+  
+    {{ $superheroes->links('pagination::bootstrap-4') }}
+      
 @endsection

@@ -1,41 +1,62 @@
 @extends('plantilla')
+  
 @section('content')
-
-<?php
-    if (isset($_REQUEST['gender'])) {
-        $selected_choice = $_REQUEST['gender'];
-    }
-    else {
-        $selected_choice = "none";
-    }
-?>
-
-Nou Superheroi
-<br><br>
-<form method="POST" action="/savesuperhero">
-	
-	@csrf
-	Real Name <input type="text" name="realname" value="{{old('realname')}}"><br><br>
-	Hero Name <input type="text" name="heroname" value="{{old('heroname')}}"><br><br>
-	Gender <select name="gender" id="gender">
-		<option value="male" @if( old('gender') == "male") selected @endif >Male</option>
-		<option value="female" @if( old('gender') == "female") selected @endif >Female</option>
-	</select><br><br>
-	Planet <select name="planet_id" id="planet_id">
-  		@foreach($planetes as $planeta)
-		<option value="{{ $planeta->id }}" @if (old('planet_id') == $planeta->id) selected @endif >{{ $planeta->name }}</option>
-  		@endforeach
-	</select><br><br>	
-	<input type="submit" name="Desar">
-
-</form>
-
-@if($errors->any())
-	<ul>
-		@foreach($errors->all() as $error)
-			<li>{{$error}}</li>
-		@endforeach
-	</ul>
+<div>
+    <a href="{{ route('superheroes.index') }}"> Tornar</a>
+</div>
+<div>
+    <h2>Afegir Nou Superheroi</h2>
+</div>
+    
+   
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
-
+   
+<div>
+<form action="{{ route('superheroes.store') }}" method="POST">
+    @csrf
+  
+    <div>
+        <strong>Real Name:</strong>
+        <input type="text" name="realname" value="{{ old('realname') }}">
+    </div>
+        
+    <div>           
+        <strong>Hero Name:</strong>
+        <input type="text" name="heroname" value="{{ old('heroname') }}">
+    </div>
+        
+    <div>
+        <strong>Gender:</strong>
+        <select name="gender">
+            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                    <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+        </select>
+    </div>
+        
+    <div>           
+        <strong>Planet:</strong>
+        <select name="planet_id">
+            @foreach($planets as $planet)
+                <option value="{{ $planet->id }}" {{ old('planet_id') == $planet->id ? 'selected' : '' }} >
+                            {{ $planet->name }}
+                        </option>       
+            @endforeach            
+        </select>
+    </div>
+        
+        
+    <div>
+        <input type="submit" value="Desar">
+    </div>
+    
+</form>
+</div>
 @endsection

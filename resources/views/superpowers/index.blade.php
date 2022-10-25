@@ -1,27 +1,50 @@
 @extends('plantilla')
+
 @section('content')
+    <div>        
+        <h2>Superpoders</h2>
+    </div>
+    <div>
+        <a href="{{ route('superpowers.create') }}"> Nou superpoder</a>
+    </div>
+        
+   
+    @if (session('success'))
+        <div class="alert alert-success">
+            <p>{{ session('success') }}</p>
+        </div>
+    @endif
 
-Llista Superpoders <a href="/formnew">Nou Superpoder</a>
-<br>
-<table border=1>
-	<tr>
-		<td>ID</td>
-		<td>Description</td>
-		<td>Created At</td>
-		<td>Operacions</td>
-	</tr>
-	@foreach($poders as $poder)
-	<tr>
-		<td>{{ $poder->id }}</td>
-		<td>{{ $poder->description }}</td>
-		<td>{{ $poder->created_at }}</td>
-		<td><a href="/delete/{{ $poder->id }}">Esborrar</a></td>
-		<td><a href="/update/{{ $poder->id }}">Actualitzar</a></td>
-		<td><a href="/show/{{ $poder->id }}">Mostrar</a></td>
-	</tr>
-	@endforeach
-</table>
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 
-{{$poders->links('pagination::bootstrap-4')}}
-
+       
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>                  
+                <th>Operacions</th>
+            </tr>
+        </thead>
+        
+        @foreach ($superpowers as $superpower)
+        
+        <tr>
+            <td>{{ $superpower->id }}</td>
+            <td>{{ $superpower->description }}</td>                
+            <td>     
+                  <a href="{{ route('superpowers.show',$superpower->id) }}">Mostrar</a>        
+                  <a href="{{ route('superpowers.edit',$superpower->id) }}">Editar</a>
+                  <a href="{{ route('superpowers.destroy',$superpower->id) }}">Esborrar</a>               
+            </td>
+        </tr>
+        @endforeach
+    </table>
+  
+    {{ $superpowers->links('pagination::bootstrap-4') }}
+      
 @endsection

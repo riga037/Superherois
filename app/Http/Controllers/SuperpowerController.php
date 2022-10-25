@@ -15,8 +15,8 @@ class SuperpowerController extends Controller
     public function index()
     {
         //
-        $poders = Superpower::paginate(5);
-        return view('superpowers.index', compact('poders'));
+        $superpowers = Superpower::paginate(5);
+        return view('superpowers.index', compact('superpowers'));
     }
 
     /**
@@ -47,7 +47,7 @@ class SuperpowerController extends Controller
         $superpower->description = $request->description;
         $superpower->save();
 
-        return redirect('/powers');
+        return redirect('/superpowers');
     }
 
     /**
@@ -69,12 +69,10 @@ class SuperpowerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($superpower)
+    public function edit(Superpower $superpower)
     {
         //
-        $poder = Superpower::findOrFail($superpower);
-
-        return view('superpowers.update',compact('poder'));
+        return view('superpowers.update',['superpower'=>$superpower]);
     }
 
     /**
@@ -84,18 +82,17 @@ class SuperpowerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $superpower)
+    public function update(Request $request, Superpower $superpower)
     {
         //
         $request->validate(
             ['description' => 'required | min:3']
         );
         
-        $poder = Superpower::findOrFail($superpower);
-        $poder->description = $request->description;
-        $poder->save();
+        $superpower->description = $request->description;
+        $superpower->save();
 
-        return redirect('/powers');
+        return redirect('/superpowers');
     }
 
     /**
@@ -104,12 +101,11 @@ class SuperpowerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($superpower)
+    public function destroy(Superpower $superpower)
     {
         //
-        $poder = Superpower::findOrFail($superpower);
-        $poder->delete();
+        $superpower->delete();
 
-        return redirect('/powers');
+        return redirect('/superpowers');
     }
 }

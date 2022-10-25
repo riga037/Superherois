@@ -3,7 +3,7 @@
 
 Nou Superpoder
 <br><br>
-<form method="POST" action="/save">
+<form method="POST" action="{{ route('superpowers.store') }}">
 	
 	@csrf
 	<input type="text" name="description" value="{{old('description')}}">

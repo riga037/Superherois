@@ -2,7 +2,7 @@
 
 Nou Superpoder
 <br><br>
-<form method="POST" action="/save">
+<form method="POST" action="<?php echo e(route('superpowers.store')); ?>">
 	
 	<?php echo csrf_field(); ?>
 	<input type="text" name="description" value="<?php echo e(old('description')); ?>">
