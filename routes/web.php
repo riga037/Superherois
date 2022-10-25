@@ -20,19 +20,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/superpowers', [App\Http\Controllers\SuperpowerController::class, 'index'])->name('superpowers.index');
+    Route::get('/superpowers', [App\Http\Controllers\SuperpowerController::class, 'index'])->name('superpowers.index');
 
-Route::get('/superpowers/create', [App\Http\Controllers\SuperpowerController::class, 'create'])->name('superpowers.create');
+    Route::get('/superpowers/create', [App\Http\Controllers\SuperpowerController::class, 'create'])->name('superpowers.create');
 
-Route::get('/superpowers/show/{superpower}', [App\Http\Controllers\SuperpowerController::class, 'show'])->name('superpowers.show');
+    Route::get('/superpowers/show/{superpower}', [App\Http\Controllers\SuperpowerController::class, 'show'])->name('superpowers.show');
 
-Route::post('/superpowers/store', [App\Http\Controllers\SuperpowerController::class, 'store'])->name('superpowers.store');
+    Route::post('/superpowers/store', [App\Http\Controllers\SuperpowerController::class, 'store'])->name('superpowers.store');
 
-Route::get('/superpowers/destroy/{superpower}', [App\Http\Controllers\SuperpowerController::class, 'destroy'])->name('superpowers.destroy');
+    Route::get('/superpowers/destroy/{superpower}', [App\Http\Controllers\SuperpowerController::class, 'destroy'])->name('superpowers.destroy');
 
-Route::get('/superpowers/edit/{superpower}', [App\Http\Controllers\SuperpowerController::class, 'edit'])->name('superpowers.edit');
+    Route::get('/superpowers/edit/{superpower}', [App\Http\Controllers\SuperpowerController::class, 'edit'])->name('superpowers.edit');
 
-Route::post('/superpowers/update/{superpower}', [App\Http\Controllers\SuperpowerController::class, 'update'])->name('superpowers.update');
+    Route::post('/superpowers/update/{superpower}', [App\Http\Controllers\SuperpowerController::class, 'update'])->name('superpowers.update');
 
 
     Route::get('/planets', [App\Http\Controllers\PlanetController::class, 'index'])->name('planets.index');
@@ -63,3 +63,10 @@ Route::post('/superpowers/update/{superpower}', [App\Http\Controllers\Superpower
     Route::get('/superheroes/edit/{superhero}', [App\Http\Controllers\SuperheroController::class, 'edit'])->name('superheroes.edit');
     
     Route::post('/superheroes/update/{superhero}', [App\Http\Controllers\SuperheroController::class, 'update'])->name('superheroes.update');
+    
+    // Superheroes - Superpowers
+    Route::get('/superheroes/{superhero}/superpowers', [App\Http\Controllers\SuperheroController::class, 'editSuperpowers'])->name('superheroes.editsuperpowers');
+
+    Route::post('/superheroes/{superhero}/assignsuperpowers', [App\Http\Controllers\SuperheroController::class, 'attachSuperpowers'])->name('superheroes.assignsuperpowers');
+
+    Route::post('/superheroes/{superhero}/detachsuperpowers', [App\Http\Controllers\SuperheroController::class, 'detachSuperpowers'])->name('superheroes.detachsuperpowers');

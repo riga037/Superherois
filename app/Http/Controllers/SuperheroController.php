@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Superhero;
 use App\Models\Planet;
+use App\Models\Superpower;
 
 class SuperheroController extends Controller
 {
@@ -125,5 +126,50 @@ class SuperheroController extends Controller
         $superhero->delete();
 
         return redirect('/superheroes');
+    }
+
+    public function editSuperpowers(Superhero $superhero) 
+    {
+        
+        // Transformem la col·lecció de superpoders en un array amb els id's
+        
+        $arrayId = $superhero->superpowers->pluck('id'); // exemple: [1,3,5]
+        
+        $superpowers = Superpower::whereNotIn('id',$arrayId)->get();
+       
+        
+        return view('superheroes.showSuperpowers',compact('superhero','superpowers'));
+    }
+
+    public function attachSuperpowers(Request $request, Superhero $superhero) 
+    {
+        
+        $request->validate([
+            'powers' => 'exists:superpowers,id',                       
+        ]);
+
+       $superhero->superpowers()->attach($request->powers);
+        
+        return redirect()->route('superheroes.editsuperpowers',$superhero->id)
+                        ->with('success','Superpowers assignats correctament');
+
+    }
+
+
+    public function detachSuperpowers(Request $request, Superhero $superhero) 
+    {
+        
+        $request->validate([
+            'powers' => 'exists:superpowers,id',                       
+        ]);
+
+        // Una llista buida dins detach 
+        // elimina tots els superpoders!
+        if ($request->has('powers'))
+            $superhero->superpowers()->detach($request->powers);
+        
+        return redirect()->route('superheroes.editsuperpowers',$superhero->id)
+                        ->with('success','Superpoders extrets correctament');
+
     }
 }

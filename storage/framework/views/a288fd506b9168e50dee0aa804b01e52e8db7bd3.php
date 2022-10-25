@@ -1,7 +1,7 @@
   
 <?php $__env->startSection('content'); ?>
 <div class="float-right">
-    <a href="<?php echo e(route('superheroes.index')); ?>"> Tornar</a>
+    <a href="<?php echo e(route('superheroes.index')); ?>">Tornar</a>
 </div>
 <h2> Fitxa Superheroi</h2>
               
