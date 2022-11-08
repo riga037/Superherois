@@ -16,9 +16,15 @@ use App\Http\Controllers\SuperheroController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Auth::routes();
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::group(['middleware'=>'auth'], function() {
 
     Route::get('/superpowers', [App\Http\Controllers\SuperpowerController::class, 'index'])->name('superpowers.index');
 
@@ -70,3 +76,9 @@ Route::get('/', function () {
     Route::post('/superheroes/{superhero}/assignsuperpowers', [App\Http\Controllers\SuperheroController::class, 'attachSuperpowers'])->name('superheroes.assignsuperpowers');
 
     Route::post('/superheroes/{superhero}/detachsuperpowers', [App\Http\Controllers\SuperheroController::class, 'detachSuperpowers'])->name('superheroes.detachsuperpowers');
+
+    });
+    
+    /*Route::get('/secret', function () {
+        return "Estàs autentificat!!!";
+    })->middleware('auth');*/
