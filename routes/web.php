@@ -77,6 +77,12 @@ use App\Http\Controllers\SuperheroController;
 
     Route::post('/superheroes/{superhero}/detachsuperpowers', [App\Http\Controllers\SuperheroController::class, 'detachSuperpowers'])->name('superheroes.detachsuperpowers');
 
+    Route::group(['middleware'=>'is_admin'], function() {
+
+        //Afegir rutes on es modifiqui o esborri la informació.
+
+    });
+
     });
     
     /*Route::get('/secret', function () {
