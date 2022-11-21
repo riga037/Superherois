@@ -39,10 +39,12 @@
             <td>{{ $superhero->heroname }}</td>
             <td>{{ $superhero->gender }}</td>                     
             <td>     
+                <a href="{{ route('superheroes.show',$superhero->id) }}">Mostrar</a> 
+                @if(Auth::user()->is_admin)
                 <a href="{{ route('superheroes.editsuperpowers',$superhero->id) }}">Poders</a>  
-                <a href="{{ route('superheroes.show',$superhero->id) }}">Mostrar</a>        
                 <a href="{{ route('superheroes.edit',$superhero->id) }}">Editar</a>
-                <a href="{{ route('superheroes.destroy',$superhero->id) }}">Esborrar</a>               
+                <a href="{{ route('superheroes.destroy',$superhero->id) }}">Esborrar</a>   
+                @endif            
             </td>
         </tr>
         @endforeach

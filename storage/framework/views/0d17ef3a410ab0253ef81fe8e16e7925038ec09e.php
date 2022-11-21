@@ -37,7 +37,7 @@
 	    			
 	    	</select>
 	    	</div>
-	    	<input type="submit" value="treure poders" class="btn btn-dark">
+	    	<input type="submit" value="Treure poders" class="btn btn-dark">
     	</form>
 
     </div>

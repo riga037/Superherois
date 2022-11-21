@@ -38,10 +38,12 @@
             <td><?php echo e($superhero->heroname); ?></td>
             <td><?php echo e($superhero->gender); ?></td>                     
             <td>     
+                <a href="<?php echo e(route('superheroes.show',$superhero->id)); ?>">Mostrar</a> 
+                <?php if(Auth::user()->is_admin): ?>
                 <a href="<?php echo e(route('superheroes.editsuperpowers',$superhero->id)); ?>">Poders</a>  
-                <a href="<?php echo e(route('superheroes.show',$superhero->id)); ?>">Mostrar</a>        
                 <a href="<?php echo e(route('superheroes.edit',$superhero->id)); ?>">Editar</a>
-                <a href="<?php echo e(route('superheroes.destroy',$superhero->id)); ?>">Esborrar</a>               
+                <a href="<?php echo e(route('superheroes.destroy',$superhero->id)); ?>">Esborrar</a>   
+                <?php endif; ?>            
             </td>
         </tr>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

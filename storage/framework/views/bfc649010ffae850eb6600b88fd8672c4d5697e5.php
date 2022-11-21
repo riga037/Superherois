@@ -38,9 +38,11 @@
             <td><?php echo e($planet->name); ?></td>
             <td><?php echo e($planet->created_at); ?></td>                     
             <td>     
-                  <a href="<?php echo e(route('planets.show',$planet->id)); ?>">Mostrar</a>        
+                  <a href="<?php echo e(route('planets.show',$planet->id)); ?>">Mostrar</a>  
+                <?php if(Auth::user()->is_admin): ?>
                   <a href="<?php echo e(route('planets.edit',$planet->id)); ?>">Editar</a>
-                  <a href="<?php echo e(route('planets.destroy',$planet->id)); ?>">Esborrar</a>               
+                  <a href="<?php echo e(route('planets.destroy',$planet->id)); ?>">Esborrar</a> 
+                <?php endif; ?>
             </td>
         </tr>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -36,9 +36,11 @@
             <td><?php echo e($superpower->id); ?></td>
             <td><?php echo e($superpower->description); ?></td>                
             <td>     
-                  <a href="<?php echo e(route('superpowers.show',$superpower->id)); ?>">Mostrar</a>        
+                  <a href="<?php echo e(route('superpowers.show',$superpower->id)); ?>">Mostrar</a>   
+                <?php if(Auth::user()->is_admin): ?>     
                   <a href="<?php echo e(route('superpowers.edit',$superpower->id)); ?>">Editar</a>
-                  <a href="<?php echo e(route('superpowers.destroy',$superpower->id)); ?>">Esborrar</a>               
+                  <a href="<?php echo e(route('superpowers.destroy',$superpower->id)); ?>">Esborrar</a>    
+                <?php endif; ?>           
             </td>
         </tr>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

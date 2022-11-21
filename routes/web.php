@@ -53,7 +53,7 @@ use App\Http\Controllers\SuperheroController;
     Route::post('/superheroes/store', [App\Http\Controllers\SuperheroController::class, 'store'])->name('superheroes.store');
     
 
-    Route::group(['middleware'=>'is_admin'], function() {
+    Route::group(['middleware'=>['auth','role:admin']], function() {
 
         //Afegir rutes on es modifiqui o esborri la informació.
 
@@ -88,6 +88,10 @@ use App\Http\Controllers\SuperheroController;
 
     });
     
-    /*Route::get('/secret', function () {
-        return "Estàs autentificat!!!";
-    })->middleware('auth');*/
+    /*Route::group(['middleware'=>['auth','role:normal']], function () {
+
+        Route::get('/accesnormal', function() {
+            echo "No tens permisos d'administrador.";
+        });
+
+    });*/
