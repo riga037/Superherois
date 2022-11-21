@@ -39,7 +39,7 @@
             <td><?php echo e($planet->created_at); ?></td>                     
             <td>     
                   <a href="<?php echo e(route('planets.show',$planet->id)); ?>">Mostrar</a>  
-                <?php if(Auth::user()->is_admin): ?>
+                  <?php if(Auth::user()->role=='admin'): ?>
                   <a href="<?php echo e(route('planets.edit',$planet->id)); ?>">Editar</a>
                   <a href="<?php echo e(route('planets.destroy',$planet->id)); ?>">Esborrar</a> 
                 <?php endif; ?>

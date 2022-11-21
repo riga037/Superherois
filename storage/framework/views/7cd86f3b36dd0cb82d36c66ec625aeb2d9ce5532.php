@@ -39,7 +39,7 @@
             <td><?php echo e($superhero->gender); ?></td>                     
             <td>     
                 <a href="<?php echo e(route('superheroes.show',$superhero->id)); ?>">Mostrar</a> 
-                <?php if(Auth::user()->is_admin): ?>
+                <?php if(Auth::user()->role=='admin'): ?> 
                 <a href="<?php echo e(route('superheroes.editsuperpowers',$superhero->id)); ?>">Poders</a>  
                 <a href="<?php echo e(route('superheroes.edit',$superhero->id)); ?>">Editar</a>
                 <a href="<?php echo e(route('superheroes.destroy',$superhero->id)); ?>">Esborrar</a>   

@@ -37,7 +37,7 @@
             <td><?php echo e($superpower->description); ?></td>                
             <td>     
                   <a href="<?php echo e(route('superpowers.show',$superpower->id)); ?>">Mostrar</a>   
-                <?php if(Auth::user()->is_admin): ?>     
+                <?php if(Auth::user()->role=='admin'): ?>     
                   <a href="<?php echo e(route('superpowers.edit',$superpower->id)); ?>">Editar</a>
                   <a href="<?php echo e(route('superpowers.destroy',$superpower->id)); ?>">Esborrar</a>    
                 <?php endif; ?>           

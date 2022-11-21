@@ -40,7 +40,7 @@
             <td>{{ $planet->created_at }}</td>                     
             <td>     
                   <a href="{{ route('planets.show',$planet->id) }}">Mostrar</a>  
-                @if(Auth::user()->is_admin)
+                  @if(Auth::user()->role=='admin')
                   <a href="{{ route('planets.edit',$planet->id) }}">Editar</a>
                   <a href="{{ route('planets.destroy',$planet->id) }}">Esborrar</a> 
                 @endif
