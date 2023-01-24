@@ -20,6 +20,10 @@ use App\Http\Controllers\SuperheroController;
         return view('welcome');
     });
 
+    Route::get('/taulaplanetes', function () {
+        return view('planets.api.index');
+    });
+
     Auth::routes();
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
