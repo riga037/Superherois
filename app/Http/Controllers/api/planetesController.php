@@ -170,7 +170,7 @@ class planetesController extends Controller
             'data' => $planet,
         ];
 
-        return $response()->json($response,200);
+        return response()->json($response,200);
     }
 
     /**
