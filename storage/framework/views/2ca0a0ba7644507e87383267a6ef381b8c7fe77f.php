@@ -171,6 +171,7 @@
     
             } else {
                 console.log("Error actualitzant.");
+                showErrors(data.data);
             }
             
             //console.log(json);
