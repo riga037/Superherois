@@ -28,6 +28,18 @@ use App\Http\Controllers\SuperheroController;
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    Route::get('/token', function (Request $request) {
+        if(auth()->check()) {
+            //auth()->user()->tokens()->delete();
+            $token = auth()->user()->createToken("prova");
+            return response()->json(['token' => $token->plainTextToken],200);
+        } else {
+            return response()->json('Not authorized',405);
+        }
+    });
+
+    //Token prova: "6|5dL8dcnLBN2lsFqdYX0h64PS5DSJFAIRAUmHGrUU"
+
     Route::group(['middleware'=>'auth'], function() {
 
     Route::get('/superpowers', [App\Http\Controllers\SuperpowerController::class, 'index'])->name('superpowers.index');
