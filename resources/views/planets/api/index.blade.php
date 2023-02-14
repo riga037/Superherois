@@ -115,6 +115,10 @@
     </tbody>
 </table>
 
+<nav class="mt-2">
+    <ul id="pagination" class="pagination"></ul>
+</nav>
+
 </body>
 </html>
 
@@ -126,6 +130,8 @@
     
     const divErrors = document.getElementById("errors");
     divErrors.style.display = "none";
+
+    const pagination = document.getElementById("pagination");
     
     const url = "http://127.0.0.1:8000/api/planets";
     
@@ -144,18 +150,67 @@
         divErrors.appendChild(ul);
         
     }
+
+    function afegirLinks(links) {
+        
+        for(const link of links) {
+           
+            afegirBoto(link);
+        }
+    }
+
+    function afegirBoto(link) {
+        console.log(link);
+        const pagli = document.createElement("li");
+        pagli.classList.add('page-item');
+
+        if(link.url == null) {
+            pagli.classList.add('disabled');
+        }
+        
+        if(link.active == true) {
+            pagli.classList.add('active');
+        }
+
+        const pagAnchor = document.createElement("a");
+        pagAnchor.innerHTML = link.label;
+        pagAnchor.addEventListener('click', function(event) { paginate(link.url)});
+        pagAnchor.classList.add('page-link');
+        pagAnchor.setAttribute('href',"#");
+
+        pagli.appendChild(pagAnchor);
+        pagination.appendChild(pagli);
+    }
+
+    function paginate(url) {
+        console.log("works");
+        console.log(url);
+        pagination.innerHTML = "";
+        taula.innerHTML = "";
+        loadIntoTable(url);
+    }
     
     async function loadIntoTable(url) {
         
         try {
-            
+            console.log(url)
             const response = await fetch(url);
             const json = await response.json();
-            const rows = json.data;
+            const rows = json.data.data;
             
             for (const row of rows) {
                 document.getElementById("taula").innerHTML += "<tr id='"+row.id+"'><td>"+row.id+"</td><td>"+row.name+"</td><td><input type=button onclick='deletePlanet("+row.id+")' value='Delete'><input type=button onclick='updatePlanet("+row.id+")' value='Update'></td></tr>";
             }
+
+            const links = json.data.links;
+            
+            /*
+            var i = 0;
+            for (const row of rows) {
+                afegirFila(row);
+            }*/
+
+            afegirLinks(links);
             
         } catch(error) {
             
@@ -317,7 +372,7 @@ async function getInfos() {
     await getUser();
 }
 
-getInfos();
+//getInfos();
 loadIntoTable(url);
 
 

@@ -18,7 +18,7 @@ class planetesController extends Controller
     public function index()
     {
         //
-        $planets = planet::all(['id','name']);
+        $planets = planet::paginate(5);
 
         $response = [
             'success' => true,
